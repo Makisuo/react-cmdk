@@ -1,8 +1,7 @@
 import ListItem, { ButtonProps, LinkProps } from './ListItem'
 import React, { useContext } from 'react'
 import { SearchContext } from '../lib/context'
-import { MagnifyingGlassIcon } from '@heroicons/react/24/outline'
-
+import { Search as SearchIcon } from '@mui/icons-material'
 interface FreeSearchActionProps extends Omit<ButtonProps & LinkProps, 'index'> {
 	index?: number
 	label?: string
@@ -14,7 +13,7 @@ export default function FreeSearchAction({ label = 'Search for', ...props }: Fre
 	return (
 		<ListItem
 			index={0}
-			icon={<MagnifyingGlassIcon className='w-5 h-5 text-gray-500'></MagnifyingGlassIcon>}
+			icon={<SearchIcon className='w-5 h-5 text-gray-500'></SearchIcon>}
 			showType={false}
 			{...props}
 		>
