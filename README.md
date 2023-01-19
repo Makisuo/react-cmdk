@@ -6,13 +6,13 @@ A package with components for building your dream command palette for your web a
 
 Watch the [YouTube demo](https://www.youtube.com/watch?v=FN8noNclyoU) or [try it out here](https://react-cmdk.com) to get started.
 
-- [Features](#features)
-- [Installation](#installation)
-- [Example usage](#example-usage)
-  - [Opening the commane palelette](#opening-the-command-palelette)
-- [API](#api)
-- [Utils](#utils)
-- [Maintainers](#maintainers)
+-   [Features](#features)
+-   [Installation](#installation)
+-   [Example usage](#example-usage)
+    -   [Opening the commane palelette](#opening-the-command-palelette)
+-   [API](#api)
+-   [Utils](#utils)
+-   [Maintainers](#maintainers)
 
 ## Features
 
@@ -29,13 +29,13 @@ Watch the [YouTube demo](https://www.youtube.com/watch?v=FN8noNclyoU) or [try it
 ## Installation
 
 ```
-npm install react-cmdk
+npm install react-cmdk @mui/icons-material @mui/material @emotion/styled @emotion/reac
 ```
 
 Or if you'd rather use Yarn
 
 ```
-yarn add react-cmdk
+yarn add react-cmdk @mui/icons-material @mui/material @emotion/styled @emotion/reac
 ```
 
 ## Example usage
@@ -45,108 +45,96 @@ included components. But here is an example of a command palette that uses some
 of the included helpers for a very neat solution.
 
 ```typescript
-import "react-cmdk/dist/cmdk.css";
-import CommandPalette, { filterItems, getItemIndex } from "react-cmdk";
-import { useState } from "react";
+import 'react-cmdk/dist/cmdk.css'
+import CommandPalette, { filterItems, getItemIndex } from 'react-cmdk'
+import { useState } from 'react'
 
 const Example = () => {
-  const [page, setPage] = useState<"root" | "projects">("root");
-  const [open, setOpen] = useState<boolean>(true);
-  const [search, setSearch] = useState("");
+	const [page, setPage] = useState<'root' | 'projects'>('root')
+	const [open, setOpen] = useState<boolean>(true)
+	const [search, setSearch] = useState('')
 
-  const filteredItems = filterItems(
-    [
-      {
-        heading: "Home",
-        id: "home",
-        items: [
-          {
-            id: "home",
-            children: "Home",
-            icon: "HomeIcon",
-            href: "#",
-          },
-          {
-            id: "settings",
-            children: "Settings",
-            icon: "CogIcon",
-            href: "#",
-          },
-          {
-            id: "projects",
-            children: "Projects",
-            icon: "CollectionIcon",
-            closeOnSelect: false,
-            onClick: () => {
-              setPage("projects");
-            },
-          },
-        ],
-      },
-      {
-        heading: "Other",
-        id: "advanced",
-        items: [
-          {
-            id: "developer-settings",
-            children: "Developer settings",
-            icon: "CodeIcon",
-            href: "#",
-          },
-          {
-            id: "privacy-policy",
-            children: "Privacy policy",
-            icon: "SupportIcon",
-            href: "#",
-          },
-          {
-            id: "log-out",
-            children: "Log out",
-            icon: "LogoutIcon",
-            onClick: () => {
-              alert("Logging out...");
-            },
-          },
-        ],
-      },
-    ],
-    search
-  );
+	const filteredItems = filterItems(
+		[
+			{
+				heading: 'Home',
+				id: 'home',
+				items: [
+					{
+						id: 'home',
+						children: 'Home',
+						icon: 'HomeIcon',
+						href: '#',
+					},
+					{
+						id: 'settings',
+						children: 'Settings',
+						icon: 'CogIcon',
+						href: '#',
+					},
+					{
+						id: 'projects',
+						children: 'Projects',
+						icon: 'CollectionIcon',
+						closeOnSelect: false,
+						onClick: () => {
+							setPage('projects')
+						},
+					},
+				],
+			},
+			{
+				heading: 'Other',
+				id: 'advanced',
+				items: [
+					{
+						id: 'developer-settings',
+						children: 'Developer settings',
+						icon: 'CodeIcon',
+						href: '#',
+					},
+					{
+						id: 'privacy-policy',
+						children: 'Privacy policy',
+						icon: 'SupportIcon',
+						href: '#',
+					},
+					{
+						id: 'log-out',
+						children: 'Log out',
+						icon: 'LogoutIcon',
+						onClick: () => {
+							alert('Logging out...')
+						},
+					},
+				],
+			},
+		],
+		search,
+	)
 
-  return (
-    <CommandPalette
-      onChangeSearch={setSearch}
-      onChangeOpen={setOpen}
-      search={search}
-      isOpen={open}
-      page={page}
-    >
-      <CommandPalette.Page id="root">
-        {filteredItems.length ? (
-          filteredItems.map((list) => (
-            <CommandPalette.List key={list.id} heading={list.heading}>
-              {list.items.map(({ id, ...rest }) => (
-                <CommandPalette.ListItem
-                  key={id}
-                  index={getItemIndex(filteredItems, id)}
-                  {...rest}
-                />
-              ))}
-            </CommandPalette.List>
-          ))
-        ) : (
-          <CommandPalette.FreeSearchAction />
-        )}
-      </CommandPalette.Page>
+	return (
+		<CommandPalette onChangeSearch={setSearch} onChangeOpen={setOpen} search={search} isOpen={open} page={page}>
+			<CommandPalette.Page id='root'>
+				{filteredItems.length ? (
+					filteredItems.map((list) => (
+						<CommandPalette.List key={list.id} heading={list.heading}>
+							{list.items.map(({ id, ...rest }) => (
+								<CommandPalette.ListItem key={id} index={getItemIndex(filteredItems, id)} {...rest} />
+							))}
+						</CommandPalette.List>
+					))
+				) : (
+					<CommandPalette.FreeSearchAction />
+				)}
+			</CommandPalette.Page>
 
-      <CommandPalette.Page id="projects">
-        {/* Projects page */}
-      </CommandPalette.Page>
-    </CommandPalette>
-  );
-};
+			<CommandPalette.Page id='projects'>{/* Projects page */}</CommandPalette.Page>
+		</CommandPalette>
+	)
+}
 
-export default Example;
+export default Example
 ```
 
 ### Opening the command palelette
@@ -157,34 +145,34 @@ but you can actually open it however you want. Here are some examples.
 #### Helper
 
 ```typescript
-const [isOpen, setIsOpen] = useState<boolean>(false);
+const [isOpen, setIsOpen] = useState<boolean>(false)
 
-useHandleOpenCommandPalette(setIsOpen);
+useHandleOpenCommandPalette(setIsOpen)
 ```
 
 #### Custom
 
 ```typescript
-const [isOpen, setIsOpen] = useState<boolean>(false);
+const [isOpen, setIsOpen] = useState<boolean>(false)
 
 useEffect(() => {
-  function handleKeyDown(e: KeyboardEvent) {
-    if (e.metaKey && e.key === "k") {
-      e.preventDefault();
-      e.stopPropagation();
+	function handleKeyDown(e: KeyboardEvent) {
+		if (e.metaKey && e.key === 'k') {
+			e.preventDefault()
+			e.stopPropagation()
 
-      setIsOpen((currentValue) => {
-        return !currentValue;
-      });
-    }
-  }
+			setIsOpen((currentValue) => {
+				return !currentValue
+			})
+		}
+	}
 
-  document.addEventListener("keydown", handleKeyDown);
+	document.addEventListener('keydown', handleKeyDown)
 
-  return () => {
-    document.removeEventListener("keydown", handleKeyDown);
-  };
-}, []);
+	return () => {
+		document.removeEventListener('keydown', handleKeyDown)
+	}
+}, [])
 ```
 
 ## API
@@ -249,12 +237,7 @@ The search action also extends the `HTMLAnchorElement & HTMLButtonElement` types
 ### `RenderLink`
 
 ```typescript
-(
-  props: DetailedHTMLProps<
-    AnchorHTMLAttributes<HTMLAnchorElement>,
-    HTMLAnchorElement
-  >
-) => ReactNode;
+;(props: DetailedHTMLProps<AnchorHTMLAttributes<HTMLAnchorElement>, HTMLAnchorElement>) => ReactNode
 ```
 
 ### `JsonStructure`
@@ -284,7 +267,7 @@ Omits `index` & extends
 A function for getting the current index of a item within the json structure
 
 ```typescript
-(items: JsonStructure, listItemId: string, startIndex = 0) => number;
+;(items: JsonStructure, listItemId: string, startIndex = 0) => number
 ```
 
 ### `filterItems`
@@ -292,11 +275,7 @@ A function for getting the current index of a item within the json structure
 A function for filtering the json structure from a search string
 
 ```typescript
-(
-  items: JsonStructure,
-  search: string,
-  options?: { filterOnListHeading: boolean }
-) => JsonStructure;
+;(items: JsonStructure, search: string, options?: { filterOnListHeading: boolean }) => JsonStructure
 ```
 
 ### `renderJsonStructure`
