@@ -1,6 +1,6 @@
 {
 	"name": "@makisuo/react-cmdk",
-	"version": "1.0.1",
+	"version": "1.1.0",
 	"private": false,
 	"description": "A fast, accessible, and pretty React.js command palette",
 	"homepage": "https://react-cmdk.com",
